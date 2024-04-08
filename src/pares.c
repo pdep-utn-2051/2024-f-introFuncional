@@ -1,11 +1,11 @@
 
-
-void bobEsponja(int a[], int b, int c[]){
-  int d, e = 0;  
-  for (d = 0; d < b; d++) { 
-    if (a[d] % 2 == 0) { 
-      c[e] = a[d]; 
-      e = e + 1; 
+// Mejorando expresividad
+void losPares(int numeros[], int cant, int pares[]){
+  int i, j = 0;  
+  for (i = 0; i < cant; i++) { 
+    if (numeros[i] % 2 == 0) { 
+      pares[j] = numeros[i]; 
+      j = j + 1; 
     }
   }
 }
