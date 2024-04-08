@@ -1,7 +1,2 @@
-# ejercicio-alumno
+# Clase 2 - Intro a Funcional
 
-## Integrantes
-
-- integrante1 (usuario github)
-- integrante2 (usuario github)
-...
