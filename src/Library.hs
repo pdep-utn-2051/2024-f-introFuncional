@@ -3,7 +3,6 @@ import PdePreludat
 
 losPares = filter even
 
-
 tres :: Number
 tres = 3
 
@@ -18,10 +17,58 @@ El último caracter indica el factor RH. + para positivo, y - para negativo.
 
 -} 
 
+-- Alias de tipo
+type Sangre = String
+type Factor = Char
+type Grupo = String
+
 -- 1) definir al dador universal, que es el grupo 0 y el factor RH negativo.
+
+dadorUniversal :: Sangre
+dadorUniversal = "0-"
+
 -- 2) definir al receptor universal, que es el grupo AB y el factor RH positivo.
+
+receptorUniversal :: Sangre
+receptorUniversal = "AB+"
+
 -- 3) definir la función factor, que recibe la sangre y devuelve el factor como un caracter.
+
+factor :: Sangre -> Factor
+factor = last
+
 -- 4) definir la función grupo, que recibe la sangre y devuelve el grupo como un string.
+
+grupo :: Sangre -> Grupo
+grupo = reverse.tail.reverse
+
+-- 5) Definir la edad de adultez
+
+edadAdulta :: Number
+edadAdulta = 18
+
+-- 6) Definir la función puedeDonar que dice si una sangre puede donar a la otra, que ocurre cuando es mayor de edad, y son compatibles grupo y factor.
+
+-- Enfoque TOP-DOWN: Primero escribo la principal y luego las auxiliares.
+
+puedeDonar :: Sangre -> Number -> Sangre -> Bool
+puedeDonar donante edad receptor = esMayorDeEdad edad && esCompatible donante receptor 
+
+esMayorDeEdad :: Number -> Bool
+esMayorDeEdad edad = edad >= edadAdulta
+
+esCompatible :: Sangre -> Sangre -> Bool
+esCompatible donante receptor = 
+    esCompatibleGrupo (grupo donante) (grupo receptor) && esCompatibleFactor (factor donante) (factor receptor)
+
+
+-- Pattern matching (acá sí importa el orden)
+esCompatibleFactor :: Factor -> Factor -> Bool
+esCompatibleFactor '+' '-' = False
+esCompatibleFactor _ _ = True
+
+-- Definir tipo e implementar
+esCompatibleGrupo = implementame
 
 {-
 
